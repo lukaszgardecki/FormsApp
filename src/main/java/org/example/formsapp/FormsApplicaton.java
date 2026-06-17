@@ -11,9 +11,8 @@ public class FormsApplicaton extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FormsApplicaton.class.getResource("forms-app.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 850);
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 1100);
         stage.setTitle("FormsApp 1.0");
-//        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
