@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-viewport-background-color: #f8f9fa;"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.formsapp.Faktura1Controller">
+    <VBox spacing="20.0" style="-fx-background-color: #f8f9fa;">
+        <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
+        </padding>
+        <VBox spacing="5.0">
+            <Label text="Generator Faktury" textFill="#2c3e50">
+                <font>
+                    <Font name="System Bold" size="22.0"/>
+                </font>
+            </Label>
+            <Label text="Wprowadź dane poniżej, aby wygenerować dokument .docx" textFill="#7f8c8d">
+                <font>
+                    <Font size="13.0"/>
+                </font>
+            </Label>
+        </VBox>
+
+        <TitledPane animated="false" collapsible="false" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"
+                    text="Dane dokumentu">
+            <GridPane hgap="15.0" vgap="12.0" style="-fx-padding: 15; -fx-background-color: white;">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <VBox spacing="5.0">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Nazwa firmy (Wystawca)"/>
+                    <TextField fx:id="nazwaFirmyField" promptText="np. Acme Corp"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Numer faktury"/>
+                    <TextField fx:id="nrFakturyField" promptText="np. FV/2026/01"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+            </GridPane>
+        </TitledPane>
+
+        <TitledPane animated="false" collapsible="false" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"
+                    text="Adres Wystawcy">
+            <GridPane hgap="15.0" vgap="12.0" style="-fx-padding: 15; -fx-background-color: white;">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+
+                <VBox spacing="5.0" GridPane.columnSpan="2">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Ulica i numer"/>
+                    <TextField fx:id="wystawcaUlicaField" promptText="ul. Warszawska 10/2"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="2">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Data wystawienia"/>
+                    <DatePicker fx:id="dataPicker" maxWidth="1.7976931348623157E308"
+                                promptText="Wybierz datę"
+                                style="-fx-background-radius: 4; -fx-padding: 4;"/>
+                </VBox>
+                <VBox spacing="5.0" GridPane.rowIndex="1">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Kod pocztowy"/>
+                    <TextField fx:id="wystawcaKodField" promptText="00-001"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Miasto"/>
+                    <TextField fx:id="wystawcaMiastoField" promptText="Warszawa"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Telefon"/>
+                    <TextField fx:id="wystawcaTelefonField" promptText="+48 123 456 789"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+            </GridPane>
+        </TitledPane>
+
+        <HBox spacing="15.0">
+            <TitledPane animated="false" collapsible="false"
+                        style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="Nabywca (Do:)"
+                        HBox.hgrow="ALWAYS">
+                <VBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white;">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Imię i nazwisko"/>
+                    <TextField fx:id="nabywcaImieNazwiskoField" promptText="Jan Kowalski"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Nazwa firmy"/>
+                    <TextField fx:id="nabywcaNazwaFirmyField" promptText="Firma Handlowa"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Ulica"/>
+                    <TextField fx:id="nabywcaUlicaField" promptText="ul. Kwiatowa 5"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                    <HBox spacing="10.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                                   text="Kod"/>
+                            <TextField fx:id="nabywcaKodField" promptText="11-222"
+                                       style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                                   text="Miasto"/>
+                            <TextField fx:id="nabywcaMiastoField" promptText="Kraków"
+                                       style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                        </VBox>
+                    </HBox>
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Telefon"/>
+                    <TextField fx:id="nabywcaTelefonField" promptText="987 654 321"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+            </TitledPane>
+
+            <TitledPane animated="false" collapsible="false"
+                        style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="Adres dostawy"
+                        HBox.hgrow="ALWAYS">
+                <VBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white;">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Imię i nazwisko odbiorcy"/>
+                    <TextField fx:id="adresatImieNazwiskoField" promptText="Jan Kowalski"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Nazwa firmy"/>
+                    <TextField fx:id="adresatNazwaFirmyField" promptText="Magazyn Główny"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Ulica dostawy"/>
+                    <TextField fx:id="adresatUlicaField" promptText="ul. Logistyczna 1"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                    <HBox spacing="10.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                                   text="Kod"/>
+                            <TextField fx:id="adresatKodField" promptText="33-444"
+                                       style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                                   text="Miasto"/>
+                            <TextField fx:id="adresatMiastoField" promptText="Gdańsk"
+                                       style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                        </VBox>
+                    </HBox>
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Telefon"/>
+                    <TextField fx:id="adresatTelefonField" promptText="555 666 777"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+            </TitledPane>
+        </HBox>
+
+        <TitledPane animated="false" collapsible="false" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"
+                    text="Osoba do kontaktu">
+            <GridPane hgap="15.0" vgap="12.0" style="-fx-padding: 15; -fx-background-color: white;">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <VBox spacing="5.0">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Imię i nazwisko"/>
+                    <TextField fx:id="kontaktImieNazwiskoField" promptText="Anna Nowak"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;"
+                           text="Adres E-mail"/>
+                    <TextField fx:id="kontaktEmailField" promptText="kontakt@firma.pl"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="2">
+                    <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Telefon"/>
+                    <TextField fx:id="kontaktTelefonField" promptText="111 222 333"
+                               style="-fx-background-radius: 4; -fx-padding: 6;"/>
+                </VBox>
+            </GridPane>
+        </TitledPane>
+
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <Button
+                    mnemonicParsing="false"
+                    onAction="#onSaveDocsOnDesktop"
+                    prefHeight="42.0"
+                    prefWidth="220.0"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                    text="Zapisz .docx na pulpicie">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+            <Button
+                    mnemonicParsing="false"
+                    onAction="#onGenerateClicked"
+                    prefHeight="42.0"
+                    prefWidth="220.0"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                    text="Drukuj">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+        </HBox>
+
+    </VBox>
+</ScrollPane>
