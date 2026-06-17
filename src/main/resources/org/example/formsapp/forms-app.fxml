@@ -15,7 +15,7 @@
          <children>
             <Accordion minWidth="-Infinity" prefHeight="256.0" prefWidth="250.0">
               <panes>
-                <TitledPane animated="false" style="-fx-padding: 0;" text="Faktury">
+                <TitledPane style="-fx-padding: 0;" text="Faktury">
                      <content>
                         <VBox style="-fx-padding: 0;">
                            <children>
@@ -30,16 +30,25 @@
                            </children>
                         </VBox>
                      </content>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                 </TitledPane>
-                <TitledPane animated="false" text="Umowy">
+                <TitledPane text="Umowy">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                 </TitledPane>
-                <TitledPane animated="false" text="Wnioski">
+                <TitledPane text="Wnioski">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                 </TitledPane>
               </panes>
             </Accordion>

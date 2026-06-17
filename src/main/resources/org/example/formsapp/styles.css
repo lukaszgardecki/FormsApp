@@ -1,8 +1,8 @@
 .my-text-field {
-    -fx-background-radius: 10;
+    -fx-background-radius: 8;
     -fx-padding: 6;
     -fx-border-color: transparent;
-    -fx-border-radius: 10;
+    -fx-border-radius: 8;
     -fx-border-width: 1px;
 }
 
