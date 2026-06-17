@@ -209,7 +209,18 @@
         <HBox alignment="CENTER_RIGHT" spacing="15.0">
             <Button
                     mnemonicParsing="false"
-                    onAction="#onSaveDocsOnDesktop"
+                    onAction="#onPrintPdfOnDesktop"
+                    prefHeight="42.0"
+                    prefWidth="220.0"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                    text="Zapisz PDF na pulpicie">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+            <Button
+                    mnemonicParsing="false"
+                    onAction="#onSaveDocxOnDesktop"
                     prefHeight="42.0"
                     prefWidth="220.0"
                     style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);"
@@ -220,7 +231,7 @@
             </Button>
             <Button
                     mnemonicParsing="false"
-                    onAction="#onGenerateClicked"
+                    onAction="#onPrintDocument"
                     prefHeight="42.0"
                     prefWidth="220.0"
                     style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);"

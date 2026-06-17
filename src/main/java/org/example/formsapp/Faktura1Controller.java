@@ -3,21 +3,14 @@ package org.example.formsapp;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import org.apache.poi.xwpf.usermodel.*;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import java.awt.*;
-import java.awt.print.PrinterJob;
-import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Faktura1Controller {
+    private static final String TEMPLATE = "/org/example/formsapp/templates/szablon_1_faktura.docx";
 
-    // Mapowanie pól FXML
     @FXML private TextField nazwaFirmyField;
     @FXML private TextField nrFakturyField;
     @FXML private DatePicker dataPicker;
@@ -45,101 +38,25 @@ public class Faktura1Controller {
     @FXML private TextField kontaktTelefonField;
 
     @FXML
-    public void onGenerateClicked() {
+    public void onPrintDocument() {
         Map<String, String> formData = getFormData();
-        XWPFDocument document = generateDocument(formData);
-        printXWPFDocument(document);
+        XWPFDocument document = FileGenerator.generateDocumentFromTemplate(formData, TEMPLATE);
+        FileGenerator.printXWPFDocument(document, "faktura");
     }
 
     @FXML
-    public void onSaveDocsOnDesktop() {
+    public void onSaveDocxOnDesktop() {
         Map<String, String> formData = getFormData();
-        XWPFDocument document = generateDocument(formData);
-        saveDocumentOnDesktop(document, "faktura.docx");
+        XWPFDocument document = FileGenerator.generateDocumentFromTemplate(formData, TEMPLATE);
+        FileGenerator.saveDocxOnDesktop(document, "faktura");
     }
 
-    private XWPFDocument generateDocument(Map<String, String> data) {
-        String szablon = "/org/example/formsapp/templates/szablon_1_faktura.docx";
-        XWPFDocument doc = null;
-
-        try (InputStream inputStream = getClass().getResourceAsStream(szablon)) {
-            if (inputStream == null) throw new FileNotFoundException("Nie znaleziono szablonu: " + szablon);
-
-            doc = new XWPFDocument(inputStream);
-
-            for (XWPFParagraph p : doc.getParagraphs()) {
-                replacePlaceholders(p, data);
-            }
-
-            for (XWPFTable tbl : doc.getTables()) {
-                for (XWPFTableRow row : tbl.getRows()) {
-                    for (XWPFTableCell cell : row.getTableCells()) {
-                        for (XWPFParagraph p : cell.getParagraphs()) {
-                            replacePlaceholders(p, data);
-                        }
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return doc;
+    @FXML
+    public void onPrintPdfOnDesktop() {
+        Map<String, String> formData = getFormData();
+        XWPFDocument document = FileGenerator.generateDocumentFromTemplate(formData, TEMPLATE);
+        FileGenerator.saveAsPdfOnDesktop(document, "faktura");
     }
-
-    public void printXWPFDocument(XWPFDocument document) {
-        try {
-            File docxFile = File.createTempFile("faktura", ".docx");
-            try (FileOutputStream fos = new FileOutputStream(docxFile)) {
-                document.write(fos);
-            }
-
-            PrinterJob job = PrinterJob.getPrinterJob();
-            HashPrintRequestAttributeSet attributes = new HashPrintRequestAttributeSet();
-
-            if (job.printDialog(attributes)) {
-                Desktop.getDesktop().print(docxFile);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void saveDocumentOnDesktop(XWPFDocument doc, String destFileName) {
-        String katalogUzytkownika = System.getProperty("user.home");
-        String destFilePath = katalogUzytkownika + File.separator + "Desktop" + File.separator + destFileName;
-        File destFile = new File(destFilePath);
-        saveDocument(doc, destFile);
-    }
-
-    private void saveDocument(XWPFDocument doc, File destFile) {
-        try (FileOutputStream fos = new FileOutputStream(destFile)) {
-            doc.write(fos);
-        } catch (FileNotFoundException e) {
-            System.out.println("Nie znaleziono pliku.");
-        } catch (IOException e) {
-            System.out.println("Błąd podczas zapisywania pliku.");
-        }
-    }
-
-    private void replacePlaceholders(XWPFParagraph p, Map<String, String> data) {
-        String text = p.getText();
-        for (Map.Entry<String, String> entry : data.entrySet()) {
-            String placeholder = "${" + entry.getKey() + "}";
-            if (text.contains(placeholder)) {
-                text = text.replace(placeholder, entry.getValue());
-            }
-        }
-
-        // Aktualizacja tekstu w akapicie (zachowując formatowanie)
-        if (!text.equals(p.getText())) {
-            XWPFRun run = p.getRuns().getFirst();
-            run.setText(text, 0);
-        }
-    }
-
-
 
     private Map<String, String> getFormData() {
         Map<String, String> formData = new HashMap<>();
