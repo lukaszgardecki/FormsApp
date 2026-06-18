@@ -16,14 +16,13 @@ import java.util.Map;
 
 public class Invoice1Controller {
     private static final String TEMPLATE = "/org/example/formsapp/templates/invoice1.docx";
+    private static final String RESULT_FILE_PREFIX_NAME = "Faktura-";
 
     @FXML private TextField nazwaFirmy, nrFaktury;
     @FXML private DatePicker date;
     @FXML private TextField wystawcaUlica, wystawcaKod, wystawcaMiasto, wystawcaTelefon;
-    @FXML private TextField nabywcaImieNazwisko, nabywcaNazwaFirmy, nabywcaUlica, nabywcaKodField,
-            nabywcaMiasto, nabywcaTelefon;
-    @FXML private TextField adresatImieNazwisko, adresatNazwaFirmy, adresatUlica, adresatKod,
-            adresatMiasto, adresatTelefon;
+    @FXML private TextField nabywcaImieNazwisko, nabywcaNazwaFirmy, nabywcaUlica, nabywcaKodField, nabywcaMiasto, nabywcaTelefon;
+    @FXML private TextField adresatImieNazwisko, adresatNazwaFirmy, adresatUlica, adresatKod, adresatMiasto, adresatTelefon;
     @FXML private TextField kontaktImieNazwisko, kontaktEmail, kontaktTelefon;
 
     @FXML private ButtonBarController buttonBarController;
@@ -32,38 +31,26 @@ public class Invoice1Controller {
     @FXML
     public void initialize() {
         setupValidators();
-        buttonBarController.setActions(
-                this::onSavePdfOnDesktop,
-                this::onSaveDocxOnDesktop,
-                this::onPrintDocument
-        );
-        StringConverter<LocalDate> converter = new StringConverter<>() {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            @Override public String toString(LocalDate date) { return date == null ? "" : dtf.format(date); }
-            @Override public LocalDate fromString(String string) {
-                try { return LocalDate.parse(string, dtf); }
-                catch (Exception e) { return null; }
-            }
-        };
-        date.setConverter(converter);
+        setButtonBarActions();
+        setDateFieldsConverters();
     }
 
     private void onPrintDocument() {
         if (validator.containsErrors()) return;
         XWPFDocument document = FileGenerator.generateDocumentFromTemplate(getFormData(), TEMPLATE);
-        FileGenerator.printXWPFDocument(document, "faktura-"+System.currentTimeMillis());
+        FileGenerator.printXWPFDocument(document, RESULT_FILE_PREFIX_NAME+System.currentTimeMillis());
     }
 
     private void onSaveDocxOnDesktop() {
         if (validator.containsErrors()) return;
         XWPFDocument document = FileGenerator.generateDocumentFromTemplate(getFormData(), TEMPLATE);
-        FileGenerator.saveDocxOnDesktop(document, "faktura-"+System.currentTimeMillis());
+        FileGenerator.saveDocxOnDesktop(document, RESULT_FILE_PREFIX_NAME+System.currentTimeMillis());
     }
 
     private void onSavePdfOnDesktop() {
         if (validator.containsErrors()) return;
         XWPFDocument document = FileGenerator.generateDocumentFromTemplate(getFormData(), TEMPLATE);
-        FileGenerator.saveAsPdfOnDesktop(document, "faktura-"+System.currentTimeMillis());
+        FileGenerator.saveAsPdfOnDesktop(document, RESULT_FILE_PREFIX_NAME+System.currentTimeMillis());
     }
 
     private Map<String, String> getFormData() {
@@ -126,5 +113,25 @@ public class Invoice1Controller {
         validator.addDateValidation(date, "Data wystawienia");
 
         if (buttonBarController != null) buttonBarController.setupValidator(validator);
+    }
+
+    private void setButtonBarActions() {
+        buttonBarController.setActions(
+                this::onSavePdfOnDesktop,
+                this::onSaveDocxOnDesktop,
+                this::onPrintDocument
+        );
+    }
+
+    private void setDateFieldsConverters() {
+        StringConverter<LocalDate> converter = new StringConverter<>() {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            @Override public String toString(LocalDate date) { return date == null ? "" : dtf.format(date); }
+            @Override public LocalDate fromString(String string) {
+                try { return LocalDate.parse(string, dtf); }
+                catch (Exception e) { return null; }
+            }
+        };
+        date.setConverter(converter);
     }
 }

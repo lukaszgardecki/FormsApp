@@ -86,6 +86,12 @@
             <version>2.0.30</version>
         </dependency>
 
+        <!--Zamiana ceny na słownie:-->
+        <dependency>
+            <groupId>pl.allegro.finance</groupId>
+            <artifactId>tradukisto</artifactId>
+            <version>1.8.0</version>
+        </dependency>
 
 
 

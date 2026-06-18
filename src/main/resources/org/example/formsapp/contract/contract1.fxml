@@ -88,12 +88,6 @@
                         <TextField fx:id="stawkaH" styleClass="my-text-field" />
                     </VBox>
                     <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                        <Label text="Stawka słownie" />
-                        <TextField fx:id="stawkaSlownie" styleClass="my-text-field" />
-                    </VBox>
-                </HBox>
-                <HBox spacing="15.0">
-                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                         <Label text="Dzień wypłaty (max)" />
                         <TextField fx:id="wyplataDataMax" styleClass="my-text-field" />
                     </VBox>

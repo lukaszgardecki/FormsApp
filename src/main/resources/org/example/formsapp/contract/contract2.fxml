@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane
+        fitToWidth="true"
+        style="-fx-background-color: transparent; -fx-viewport-background-color: #f8f9fa;"
+        xmlns="http://javafx.com/javafx/26"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.example.formsapp.contract.Contract2Controller"
+>
+    <stylesheets>
+        <URL value="@/org/example/formsapp/styles.css" />
+    </stylesheets>
+
+    <VBox spacing="20.0" style="-fx-background-color: #f8f9fa;">
+        <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+        </padding>
+        <VBox spacing="5.0">
+            <Label text="Umowa kupna-sprzedaży samochodu" textFill="#2c3e50">
+                <font>
+                    <Font name="System Bold" size="22.0" />
+                </font>
+            </Label>
+        </VBox>
+
+        <TitledPane animated="false" collapsible="false" text="Miejsce i data zawarcia">
+            <GridPane hgap="15.0" style="-fx-padding: 15; -fx-background-color: white;" vgap="12.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                </columnConstraints>
+                <VBox spacing="5.0" GridPane.columnIndex="0">
+                    <Label text="Miasto" />
+                    <TextField fx:id="city" styleClass="my-text-field" />
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1">
+                    <Label text="Data" />
+                    <DatePicker fx:id="date" maxWidth="1.7976931348623157E308" styleClass="my-text-field" />
+                </VBox>
+            </GridPane>
+        </TitledPane>
+
+        <HBox spacing="15.0">
+            <TitledPane animated="false" collapsible="false" text="Sprzedający" HBox.hgrow="ALWAYS">
+                <VBox spacing="8.0" style="-fx-padding: 15; -fx-background-color: white;">
+                    <Label text="Imię i nazwisko" />
+                    <TextField fx:id="sellerName" styleClass="my-text-field" />
+                    <HBox spacing="10.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Dowód (seria/nr)" />
+                            <TextField fx:id="sellerId" styleClass="my-text-field" />
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="PESEL" />
+                            <TextField fx:id="sellerPesel" styleClass="my-text-field" />
+                        </VBox>
+                    </HBox>
+                    <Label text="Adres" />
+                    <TextField fx:id="sellerAddress" styleClass="my-text-field" />
+                    <Label text="Kod pocztowy" />
+                    <TextField fx:id="sellerPostalCode" styleClass="my-text-field" />
+                </VBox>
+            </TitledPane>
+
+            <TitledPane animated="false" collapsible="false" text="Kupujący" HBox.hgrow="ALWAYS">
+                <VBox spacing="8.0" style="-fx-padding: 15; -fx-background-color: white;">
+                    <Label text="Imię i nazwisko" />
+                    <TextField fx:id="buyerName" styleClass="my-text-field" />
+                    <HBox spacing="10.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Dowód (seria/nr)" />
+                            <TextField fx:id="buyerId" styleClass="my-text-field" />
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="PESEL" />
+                            <TextField fx:id="buyerPesel" styleClass="my-text-field" />
+                        </VBox>
+                    </HBox>
+                    <Label text="Adres" />
+                    <TextField fx:id="buyerAddress" styleClass="my-text-field" />
+                    <Label text="Kod pocztowy" />
+                    <TextField fx:id="buyerPostalCode" styleClass="my-text-field" />
+                </VBox>
+            </TitledPane>
+        </HBox>
+
+        <TitledPane animated="false" collapsible="false" text="Pojazd">
+            <VBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white;">
+                <HBox spacing="15.0">
+                    <VBox spacing="5.0" HBox.hgrow="ALWAYS"><Label text="Marka" /><TextField fx:id="car" styleClass="my-text-field" /></VBox>
+                    <VBox spacing="5.0" HBox.hgrow="ALWAYS"><Label text="Rok produkcji" /><TextField fx:id="carProdDate" styleClass="my-text-field" /></VBox>
+                    <VBox spacing="5.0" HBox.hgrow="ALWAYS"><Label text="Poj. silnika (cm3)" /><TextField fx:id="carEngineVol" styleClass="my-text-field" /></VBox>
+                </HBox>
+                <HBox spacing="15.0">
+                    <VBox spacing="5.0" HBox.hgrow="ALWAYS"><Label text="Nr VIN" /><TextField fx:id="carVin" styleClass="my-text-field" /></VBox>
+                    <VBox spacing="5.0" HBox.hgrow="ALWAYS"><Label text="Nr rejestracyjny" /><TextField fx:id="carRegNum" styleClass="my-text-field" /></VBox>
+                    <VBox spacing="5.0" HBox.hgrow="ALWAYS"><Label text="Przebieg" /><TextField fx:id="carMileage" styleClass="my-text-field" /></VBox>
+                </HBox>
+                <Label text="Dodatki / Wyposażenie" />
+                <TextField fx:id="extras" styleClass="my-text-field" />
+                <Label text="Elementy do naprawy" />
+
+                <GridPane hgap="10.0" alignment="CENTER_LEFT">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="75.0" />
+                        <ColumnConstraints percentWidth="25.0" />
+                    </columnConstraints>
+
+                    <TextField fx:id="itemsToRepair" styleClass="my-text-field" GridPane.columnIndex="0" />
+
+                    <CheckBox fx:id="noRepairsCheckBox"
+                              text="Brak"
+                              wrapText="true"
+                              GridPane.columnIndex="1" />
+                </GridPane>
+            </VBox>
+        </TitledPane>
+
+        <TitledPane animated="false" collapsible="false" text="Cena">
+            <GridPane hgap="15.0" style="-fx-padding: 15; -fx-background-color: white;" vgap="12.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                </columnConstraints>
+                <VBox spacing="5.0" GridPane.columnIndex="0">
+                    <Label text="Kwota (zł)" />
+                    <TextField fx:id="price" styleClass="my-text-field" />
+                </VBox>
+            </GridPane>
+        </TitledPane>
+
+        <fx:include fx:id="buttonBar" source="../button_bar.fxml" />
+    </VBox>
+</ScrollPane>

@@ -8,18 +8,11 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 
 public class MainController {
-    @FXML
-    private BorderPane mainBorderPane;
 
-    @FXML
-    protected void showInvoice1() {
-        changeForm("invoice/invoice1.fxml");
-    }
-
-    @FXML
-    protected void showContract1() {
-        changeForm("contract/contract1.fxml");
-    }
+    @FXML private BorderPane mainBorderPane;
+    @FXML protected void showInvoice1() { changeForm("invoice/invoice1.fxml"); }
+    @FXML protected void showContract1() { changeForm("contract/contract1.fxml"); }
+    @FXML protected void showContract2() {changeForm("contract/contract2.fxml"); }
 
     private void changeForm(String fxmlFile) {
         try {
