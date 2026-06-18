@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-viewport-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.formsapp.Faktura1Controller">
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-viewport-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.formsapp.invoice.Invoice1Controller">
     <stylesheets>
         <URL value="@/org/example/formsapp/styles.css" />
     </stylesheets>
@@ -39,11 +48,11 @@
                 </rowConstraints>
                 <VBox spacing="5.0">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Nazwa firmy (Wystawca)" />
-                    <TextField fx:id="nazwaFirmyField" promptText="np. Acme Corp" styleClass="my-text-field" />
+                    <TextField fx:id="nazwaFirmy" promptText="np. Acme Corp" styleClass="my-text-field" />
                 </VBox>
                 <VBox spacing="5.0" GridPane.columnIndex="1">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Numer faktury" />
-                    <TextField fx:id="nrFakturyField" promptText="np. FV/2026/01" styleClass="my-text-field" />
+                    <TextField fx:id="nrFaktury" promptText="np. FV/2026/01" styleClass="my-text-field" />
                 </VBox>
             </GridPane>
         </TitledPane>
@@ -62,23 +71,23 @@
 
                 <VBox spacing="5.0" GridPane.columnSpan="2">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Ulica i numer" />
-                    <TextField fx:id="wystawcaUlicaField" promptText="ul. Warszawska 10/2" styleClass="my-text-field" />
+                    <TextField fx:id="wystawcaUlica" promptText="ul. Warszawska 10/2" styleClass="my-text-field" />
                 </VBox>
                 <VBox spacing="5.0" GridPane.columnIndex="2">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Data wystawienia" />
-                    <DatePicker fx:id="datePicker" maxWidth="1.7976931348623157E308" prefHeight="12.0" prefWidth="247.0" promptText="Wybierz datę" styleClass="my-text-field" />
+                    <DatePicker fx:id="date" maxWidth="1.7976931348623157E308" prefHeight="12.0" prefWidth="247.0" promptText="Wybierz datę" styleClass="my-text-field" />
                 </VBox>
                 <VBox spacing="5.0" GridPane.rowIndex="1">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Kod pocztowy" />
-                    <TextField fx:id="wystawcaKodField" promptText="00-001" styleClass="my-text-field" />
+                    <TextField fx:id="wystawcaKod" promptText="00-001" styleClass="my-text-field" />
                 </VBox>
                 <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Miasto" />
-                    <TextField fx:id="wystawcaMiastoField" promptText="Warszawa" styleClass="my-text-field" />
+                    <TextField fx:id="wystawcaMiasto" promptText="Warszawa" styleClass="my-text-field" />
                 </VBox>
                 <VBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Telefon" />
-                    <TextField fx:id="wystawcaTelefonField" promptText="+48 123 456 789" styleClass="my-text-field" />
+                    <TextField fx:id="wystawcaTelefon" promptText="+48 123 456 789" styleClass="my-text-field" />
                 </VBox>
             </GridPane>
         </TitledPane>
@@ -87,11 +96,11 @@
             <TitledPane animated="false" collapsible="false" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="Nabywca" HBox.hgrow="ALWAYS">
                 <VBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white;">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Imię i nazwisko" />
-                    <TextField fx:id="nabywcaImieNazwiskoField" promptText="Jan Kowalski" styleClass="my-text-field" />
+                    <TextField fx:id="nabywcaImieNazwisko" promptText="Jan Kowalski" styleClass="my-text-field" />
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Nazwa firmy" />
-                    <TextField fx:id="nabywcaNazwaFirmyField" promptText="Firma Handlowa" styleClass="my-text-field" />
+                    <TextField fx:id="nabywcaNazwaFirmy" promptText="Firma Handlowa" styleClass="my-text-field" />
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Ulica" />
-                    <TextField fx:id="nabywcaUlicaField" promptText="ul. Kwiatowa 5" styleClass="my-text-field" />
+                    <TextField fx:id="nabywcaUlica" promptText="ul. Kwiatowa 5" styleClass="my-text-field" />
                     <HBox spacing="10.0">
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                             <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Kod" />
@@ -99,34 +108,34 @@
                         </VBox>
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                             <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Miasto" />
-                            <TextField fx:id="nabywcaMiastoField" promptText="Kraków" styleClass="my-text-field" />
+                            <TextField fx:id="nabywcaMiasto" promptText="Kraków" styleClass="my-text-field" />
                         </VBox>
                     </HBox>
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Telefon" />
-                    <TextField fx:id="nabywcaTelefonField" promptText="987 654 321" styleClass="my-text-field" />
+                    <TextField fx:id="nabywcaTelefon" promptText="987 654 321" styleClass="my-text-field" />
                 </VBox>
             </TitledPane>
 
             <TitledPane animated="false" collapsible="false" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="Adres dostawy" HBox.hgrow="ALWAYS">
                 <VBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white;">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Imię i nazwisko odbiorcy" />
-                    <TextField fx:id="adresatImieNazwiskoField" promptText="Jan Kowalski" styleClass="my-text-field" />
+                    <TextField fx:id="adresatImieNazwisko" promptText="Jan Kowalski" styleClass="my-text-field" />
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Nazwa firmy" />
-                    <TextField fx:id="adresatNazwaFirmyField" promptText="Magazyn Główny" styleClass="my-text-field" />
+                    <TextField fx:id="adresatNazwaFirmy" promptText="Magazyn Główny" styleClass="my-text-field" />
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Ulica dostawy" />
-                    <TextField fx:id="adresatUlicaField" promptText="ul. Logistyczna 1" styleClass="my-text-field" />
+                    <TextField fx:id="adresatUlica" promptText="ul. Logistyczna 1" styleClass="my-text-field" />
                     <HBox spacing="10.0">
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                             <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Kod" />
-                            <TextField fx:id="adresatKodField" promptText="33-444" styleClass="my-text-field" />
+                            <TextField fx:id="adresatKod" promptText="33-444" styleClass="my-text-field" />
                         </VBox>
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                             <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Miasto" />
-                            <TextField fx:id="adresatMiastoField" promptText="Gdańsk" styleClass="my-text-field" />
+                            <TextField fx:id="adresatMiasto" promptText="Gdańsk" styleClass="my-text-field" />
                         </VBox>
                     </HBox>
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Telefon" />
-                    <TextField fx:id="adresatTelefonField" promptText="555 666 777" styleClass="my-text-field" />
+                    <TextField fx:id="adresatTelefon" promptText="555 666 777" styleClass="my-text-field" />
                 </VBox>
             </TitledPane>
         </HBox>
@@ -143,36 +152,20 @@
                 </rowConstraints>
                 <VBox spacing="5.0">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Imię i nazwisko" />
-                    <TextField fx:id="kontaktImieNazwiskoField" promptText="Anna Nowak" styleClass="my-text-field" />
+                    <TextField fx:id="kontaktImieNazwisko" promptText="Anna Nowak" styleClass="my-text-field" />
                 </VBox>
                 <VBox spacing="5.0" GridPane.columnIndex="1">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Adres E-mail" />
-                    <TextField fx:id="kontaktEmailField" promptText="kontakt@firma.pl" styleClass="my-text-field" />
+                    <TextField fx:id="kontaktEmail" promptText="kontakt@firma.pl" styleClass="my-text-field" />
                 </VBox>
                 <VBox spacing="5.0" GridPane.columnIndex="2">
                     <Label style="-fx-font-weight: normal; -fx-text-fill: #34495e;" text="Telefon" />
-                    <TextField fx:id="kontaktTelefonField" promptText="111 222 333" styleClass="my-text-field" />
+                    <TextField fx:id="kontaktTelefon" promptText="111 222 333" styleClass="my-text-field" />
                 </VBox>
             </GridPane>
         </TitledPane>
 
-        <HBox alignment="CENTER_RIGHT" spacing="15.0">
-            <Button fx:id="savePDFButton" mnemonicParsing="false" onAction="#onSavePdfOnDesktop" prefHeight="42.0" prefWidth="220.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="Zapisz PDF na pulpicie">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Button>
-            <Button fx:id="saveDocxButton" mnemonicParsing="false" onAction="#onSaveDocxOnDesktop" prefHeight="42.0" prefWidth="220.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="Zapisz .docx na pulpicie">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Button>
-            <Button fx:id="printButton" mnemonicParsing="false" onAction="#onPrintDocument" prefHeight="42.0" prefWidth="220.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="Drukuj">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Button>
-        </HBox>
+        <fx:include fx:id="buttonBar" source="../button_bar.fxml" />
 
     </VBox>
 </ScrollPane>

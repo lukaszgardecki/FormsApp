@@ -10,9 +10,9 @@ import java.awt.print.PrinterJob;
 import java.io.*;
 import java.util.Map;
 
-class FileGenerator {
+public class FileGenerator {
 
-    static XWPFDocument generateDocumentFromTemplate(Map<String, String> data, String template) {
+    public static XWPFDocument generateDocumentFromTemplate(Map<String, String> data, String template) {
         XWPFDocument doc = null;
 
         try (InputStream inputStream = FileGenerator.class.getResourceAsStream(template)) {
@@ -104,18 +104,17 @@ class FileGenerator {
     }
 
     private static void replacePlaceholders(XWPFParagraph p, Map<String, String> data) {
-        String text = p.getText();
-        for (Map.Entry<String, String> entry : data.entrySet()) {
-            String placeholder = "${" + entry.getKey() + "}";
-            if (text.contains(placeholder)) {
-                text = text.replace(placeholder, entry.getValue());
+        for (XWPFRun run : p.getRuns()) {
+            String text = run.getText(0);
+            if (text != null) {
+                for (Map.Entry<String, String> entry : data.entrySet()) {
+                    String placeholder = "${" + entry.getKey() + "}";
+                    if (text.contains(placeholder)) {
+                        text = text.replace(placeholder, entry.getValue());
+                        run.setText(text, 0);
+                    }
+                }
             }
-        }
-
-        // Aktualizacja tekstu w akapicie (zachowując formatowanie)
-        if (!text.equals(p.getText())) {
-            XWPFRun run = p.getRuns().getFirst();
-            run.setText(text, 0);
         }
     }
 }

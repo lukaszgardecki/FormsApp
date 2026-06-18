@@ -13,7 +13,12 @@ public class MainController {
 
     @FXML
     protected void showInvoice1() {
-        changeForm("invoices/faktura1.fxml");
+        changeForm("invoice/invoice1.fxml");
+    }
+
+    @FXML
+    protected void showContract1() {
+        changeForm("contract/contract1.fxml");
     }
 
     private void changeForm(String fxmlFile) {

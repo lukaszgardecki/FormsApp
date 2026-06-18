@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox
+        fx:id="buttonBar"
+        alignment="CENTER_RIGHT"
+        spacing="15.0"
+        xmlns="http://javafx.com/javafx/26"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.example.formsapp.ButtonBarController">
+    <Button fx:id="savePDFButton" mnemonicParsing="false" onAction="#onSavePdfOnDesktop" prefHeight="42.0" prefWidth="220.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="Zapisz PDF na pulpicie">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
+    <Button fx:id="saveDocxButton" mnemonicParsing="false" onAction="#onSaveDocxOnDesktop" prefHeight="42.0" prefWidth="220.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="Zapisz .docx na pulpicie">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
+    <Button fx:id="printButton" mnemonicParsing="false" onAction="#onPrintDocument" prefHeight="42.0" prefWidth="220.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="Drukuj">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
+</HBox>

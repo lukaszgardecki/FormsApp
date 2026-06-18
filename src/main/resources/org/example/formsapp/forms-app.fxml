@@ -9,53 +9,65 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.formsapp.MainController">
+<BorderPane
+        fx:id="mainBorderPane"
+        maxHeight="-Infinity"
+        maxWidth="-Infinity"
+        minHeight="-Infinity"
+        minWidth="-Infinity"
+        prefHeight="400.0"
+        prefWidth="600.0"
+        xmlns="http://javafx.com/javafx/26"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.example.formsapp.MainController"
+>
    <left>
-      <VBox opacity="0.5" style="-fx-background-color: #333333;" BorderPane.alignment="CENTER">
-         <children>
-            <Accordion minWidth="-Infinity" prefHeight="256.0" prefWidth="250.0">
-              <panes>
-                <TitledPane style="-fx-padding: 0;" text="Faktury">
-                     <content>
-                        <VBox style="-fx-padding: 0;">
-                           <children>
-                              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" onMouseClicked="#showInvoice1" prefHeight="40.0" text="Faktura 1" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </content>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                </TitledPane>
-                <TitledPane text="Umowy">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                </TitledPane>
-                <TitledPane text="Wnioski">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                </TitledPane>
-              </panes>
-            </Accordion>
-         </children>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </VBox>
+       <VBox opacity="0.5" style="-fx-background-color: #333333;" BorderPane.alignment="CENTER">
+           <cursor>
+               <Cursor fx:constant="DEFAULT"/>
+           </cursor>
+           <Accordion minWidth="-Infinity" prefHeight="256.0" prefWidth="250.0">
+               <panes>
+                   <TitledPane style="-fx-padding: 0;" text="Faktury">
+                       <font>
+                           <Font size="16.0"/>
+                       </font>
+                       <VBox style="-fx-padding: 0;">
+                           <Label alignment="CENTER" maxWidth="1.7976931348623157E308" onMouseClicked="#showInvoice1"
+                                  prefHeight="40.0" text="Faktura 1" textAlignment="CENTER">
+                               <font>
+                                   <Font size="16.0"/>
+                               </font>
+                               <cursor>
+                                   <Cursor fx:constant="HAND"/>
+                               </cursor>
+                           </Label>
+                       </VBox>
+                   </TitledPane>
+                   <TitledPane text="Umowy">
+                       <font>
+                           <Font size="16.0"/>
+                       </font>
+                       <VBox style="-fx-padding: 0;">
+                           <Label alignment="CENTER" maxWidth="1.7976931348623157E308" onMouseClicked="#showContract1"
+                                  prefHeight="40.0" text="Umowa zlecenie" textAlignment="CENTER">
+                               <font>
+                                   <Font size="16.0"/>
+                               </font>
+                               <cursor>
+                                   <Cursor fx:constant="HAND"/>
+                               </cursor>
+                           </Label>
+                       </VBox>
+                   </TitledPane>
+                   <TitledPane text="Wnioski">
+                       <font>
+                           <Font size="16.0"/>
+                       </font>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                   </TitledPane>
+               </panes>
+           </Accordion>
+       </VBox>
    </left>
 </BorderPane>
