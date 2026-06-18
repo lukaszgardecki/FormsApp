@@ -3,6 +3,8 @@ package org.example.formsapp;
 import com.documents4j.api.DocumentType;
 import com.documents4j.job.LocalConverter;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
 import org.apache.poi.xwpf.usermodel.*;
 
 import java.awt.*;
@@ -48,19 +50,17 @@ public class FileGenerator {
 
     public static void printXWPFDocument(XWPFDocument document, String destFileName) {
         try {
-            File docxFile = File.createTempFile(destFileName, ".docx");
-            try (FileOutputStream fos = new FileOutputStream(docxFile)) {
-                document.write(fos);
+            byte[] pdfBytes = toPdfBytes(document);
+
+            try (PDDocument pdf = PDDocument.load(new ByteArrayInputStream(pdfBytes))) {
+                PrinterJob job = PrinterJob.getPrinterJob();
+                if (job.printDialog()) {
+                    job.setPageable(new PDFPageable(pdf));
+                    job.print();
+                }
             }
-
-            PrinterJob job = PrinterJob.getPrinterJob();
-
-            if (job.printDialog()) {
-                Desktop.getDesktop().print(docxFile);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException("Błąd drukowania dokumentu", e);
         }
     }
 
@@ -98,6 +98,30 @@ public class FileGenerator {
                         .to(pdfOut).as(DocumentType.PDF)
                         .execute();
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static byte[] toPdfBytes(XWPFDocument document) {
+        try (ByteArrayOutputStream docxBytes = new ByteArrayOutputStream();
+             ByteArrayOutputStream pdfBytes = new ByteArrayOutputStream()) {
+
+            document.write(docxBytes);
+
+            try (InputStream docxIn =
+                         new ByteArrayInputStream(docxBytes.toByteArray())) {
+
+                LocalConverter.builder()
+                        .baseFolder(new File(System.getProperty("java.io.tmpdir")))
+                        .build()
+                        .convert(docxIn).as(DocumentType.DOCX)
+                        .to(pdfBytes).as(DocumentType.PDF)
+                        .execute();
+            }
+
+            return pdfBytes.toByteArray();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
